@@ -1,3 +1,8 @@
+import { Firestore, collection, collectionData, query } from '@angular/fire/firestore';
+import { inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+
 import { Injectable, computed, signal } from '@angular/core';
 
 import {
@@ -425,13 +430,23 @@ const CAMPANHAS: CampanhaVacinacao[] = [
   providedIn: 'root'
 })
 export class VaccinationDataService {
+  private firestore = inject(Firestore);
+  private campanhasCollection = collection(this.firestore, 'campanhas');
+  
   private readonly hoje = this.semHorario(new Date());
   private readonly vacinasPorId = new Map(VACINAS.map((vacina) => [vacina.id, vacina]));
+
+  readonly campanhas = toSignal(
+  collectionData(
+    collection(this.firestore, 'campanhas'), 
+    { idField: 'id' }
+  ) as Observable<CampanhaVacinacao[]>,
+  { initialValue: [] }
+);
 
   readonly criancas = signal<Crianca[]>(CRIANCAS);
   readonly vacinas = signal<Vacina[]>(VACINAS);
   readonly registros = signal<RegistroVacinal[]>(REGISTROS);
-  readonly campanhas = signal<CampanhaVacinacao[]>(CAMPANHAS);
   readonly criancaSelecionadaId = signal<string>(CRIANCAS[0].id);
 
   readonly criancaSelecionada = computed(() => {
