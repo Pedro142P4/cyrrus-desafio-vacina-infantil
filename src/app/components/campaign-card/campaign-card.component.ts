@@ -59,7 +59,7 @@ import { VaccinationDataService } from '../../core/vaccination-data.service';
 
     .campaign-top {
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-template-columns: auto minmax(0, 1fr);
       gap: 0.75rem;
       align-items: start;
     }
@@ -87,6 +87,8 @@ import { VaccinationDataService } from '../../core/vaccination-data.service';
     h3 {
       font-size: 1rem;
       line-height: 1.25;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     p {
@@ -97,12 +99,14 @@ import { VaccinationDataService } from '../../core/vaccination-data.service';
     ion-badge {
       --background: rgba(71, 60, 51, 0.1);
       --color: #473c33;
-      max-width: 12rem;
+      grid-column: 1 / -1;
+      width: fit-content;
       white-space: normal;
       text-align: left;
       line-height: 1.25;
       border-radius: 8px;
       padding: 0.45rem 0.55rem;
+      margin-top: 0.25rem;
     }
 
     dl {
@@ -144,7 +148,7 @@ import { VaccinationDataService } from '../../core/vaccination-data.service';
       color: #473c33;
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 768px) {
       .campaign-top {
         grid-template-columns: auto minmax(0, 1fr);
       }
