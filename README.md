@@ -51,6 +51,23 @@ A interface foi construída seguindo rigorosamente a paleta de cores oficial for
 
 ---
 
+## 🔥 Integração com Firebase / Firestore
+
+- **Firebase Firestore** integrado como banco de dados para persistência das campanhas de vacinação, atendendo ao diferencial proposto no desafio.
+- Configuração via `provideFirebaseApp` e `provideFirestore` no `main.ts`, seguindo o padrão standalone do Angular 21.
+- As campanhas são carregadas em tempo real via `collectionData`, usando Signals do Angular para reatividade.
+
+---
+
+## 🚀 Deploy
+
+A aplicação está publicada e disponível em:
+
+🔗 **[cyrrus-desafio-vacina-infantil.vercel.app](https://cyrrus-desafio-vacina-infantil.vercel.app/)**
+
+---
+
+
 ## 🚀 Como executar o projeto localmente
 
 ### Pré-requisitos
